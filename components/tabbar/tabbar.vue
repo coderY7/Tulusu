@@ -1,13 +1,37 @@
 <template>
 	<!-- 底部导航 -->
-	<view class="tabbar" :style="{'padding-bottom': paddingBottomHeight + 'rpx'}">
-		<view class="tabbar-item" v-for="(item, index) in list" :key="index" @click="tabbarChange(item.path)">
-			<image class="item-img" :src="item.iconPath" v-if="current == index"></image>
-			<image class="item-img1" :src="item.icon" v-else></image>
-			<p :class=" current == index?'tabbarActive':''" v-if="language === 'cht'">{{item.cht}}</p>
-			<p :class=" current == index?'tabbarActive':''" v-else>{{item.en}}</p>
-		</view>
-	</view>
+<!--	<view class="tabbar" :style="{'padding-bottom': paddingBottomHeight + 'rpx'}">-->
+<!--		<view class="tabbar-item" v-for="(item, index) in list" :key="index" @click="tabbarChange(item.path)">-->
+<!--			<image class="item-img" :src="item.iconPath" v-if="current == index"></image>-->
+<!--			<image class="item-img1" :src="item.icon" v-else></image>-->
+<!--			<p :class=" current == index?'tabbarActive':''" v-if="language === 'cht'">{{item.cht}}</p>-->
+<!--			<p :class=" current == index?'tabbarActive':''" v-else>{{item.en}}</p>-->
+<!--		</view>-->
+<!--	</view>-->
+
+
+
+
+
+
+    <!-- 底部导航栏 -->
+    <view class="navbar" :style="{'margin-bottom': paddingBottomHeight + 'rpx'}">
+      <view
+          v-for="(item, index) in list"
+          :key="index"
+          class="nav-item"
+          @click="selectTab(item,index)"
+      >
+        			<image mode="widthFix" class="nav-icon" :src="item.iconPath" v-if="current == index"></image>
+        			<image mode="widthFix" class="nav-icon" :src="item.icon" v-else></image>
+        <text :class=" current == index?'tabbarActive':''" v-if="language === 'cht'">{{item.cht}}</text>
+        <text class="nav-text">{{ item.cht }}</text>
+      </view>
+    </view>
+
+
+
+
 </template>
 
 <script>
@@ -57,7 +81,8 @@
 						iconPath: '/static/img/tabbar/AccountSelected.png',
 						path: "/pages/index/Account",
 					},
-				]
+				],
+        selectedTab: 0, // 默认选中第一
 			};
 		},
 		created() {
@@ -82,8 +107,16 @@
 				uni.switchTab({
 					url: path
 				})
-			}
+			},
+      selectTab(item,index) {
+        uni.switchTab({
+          url: item.path
+        })
+        this.selectedTab=index
+        console.log('---',index)
+      }
 		}
+
 	};
 </script>
 
@@ -134,4 +167,72 @@
 		width: 52rpx;
 		height: 52rpx;
 	}
+</style>
+<style>
+/* 整体布局 */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+}
+
+/* 内容显示区域 */
+.content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #333;
+}
+
+/* 底部导航栏 */
+.navbar {
+  position: fixed;
+  bottom: 0rpx;
+  left: 0rpx;
+  z-index: 999;
+  width: 90vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #13131A;
+  padding: 10px;
+  border-radius: 30px;
+  margin: 10px;
+}
+
+/* 导航按钮样式 */
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background-color: #444451;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* 选中项样式 */
+.nav-item.active {
+  background-color: #4078FF; /* 选中状态的背景颜色 */
+}
+
+/* 图标样式 */
+.nav-icon {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 4px;
+}
+
+/* 文字样式 */
+.nav-text {
+  font-size: 10px;
+  color: #FFFFFF;
+}
 </style>

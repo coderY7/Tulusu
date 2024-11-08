@@ -6,9 +6,9 @@
     display: flex;
     flex-direction: row-reverse;
     margin-right: 20px;">
-      <!-- <view @click="changeLanguage" style="display:flex;flex-direction:row-reverse;width: 40px;height: 40px;filter:brightness(0.5)">
+      <view @click="changeLanguage" style="display:flex;flex-direction:row-reverse;width: 40px;height: 40px;filter:brightness(0.5)">
         <image style="width: 100%;height: 100%" src="@/static/img/index/bz7.png"></image>
-      </view> -->
+      </view>
     </view>
 
 		<view class="logo">
@@ -185,6 +185,10 @@
 <style scoped lang="scss">
 	.login {
 		height: 100VH;
+    background-image: url('@/static/img/index/bgc.png'); /* 背景图的路径 */
+    background-size: cover; /* 让背景图覆盖整个元素 */
+    background-position: center; /* 将背景图居中 */
+    background-repeat: no-repeat; /* 不重复背景图 */
 
 		.logo {
 			margin: 0 auto;
