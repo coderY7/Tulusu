@@ -7,7 +7,7 @@
 			<view class="head-title">
 				<view class="title-left">
         </view>
-				<!-- <view class="title-right" @click="changeLanguage"></view> -->
+				 <view class="title-right" @click="changeLanguage"></view>
 			</view>
 			<view class="user-box">
 				<view class="name">{{userInfo.name}}</view>
@@ -525,13 +525,13 @@
 				.title-right {
 					width: 76rpx;
 					height: 76rpx;
-					//background: url(@/static/img/index/bz7.png);
+					background: url(@/static/img/index/bz7.png);
 					background-size: 100% 100%;
 				}
 			}
 
 			.user-box {
-				margin-top: 100rpx;
+				//margin-top: 100rpx;
         display: flex;
         justify-content: center;
         flex-direction: column;
